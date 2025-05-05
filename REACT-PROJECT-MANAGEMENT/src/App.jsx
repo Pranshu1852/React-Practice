@@ -52,6 +52,18 @@ function App() {
     })
   }
 
+  function handleDeleteProject() {
+    setProjectsState((prevState)=>{
+      return {
+        ...prevState,
+        selectedProjectID: undefined,
+        projects: prevState.projects.filter((project)=>{
+          return project.id!==prevState.selectedProjectID;
+        })
+      }
+    })
+  }
+
   console.log(projectsState);
 
   function getProject(id){
@@ -65,7 +77,7 @@ function App() {
   const currProject=getProject(projectsState.selectedProjectID);
   
 
-  let content=<SelectedProject project={currProject}/>;
+  let content=<SelectedProject onDelete={handleDeleteProject} project={currProject}/>;
 
   if(projectsState.selectedProjectID === null){
     content=<NewProject onCancel={handleCancelAddProject} onAdd={handleAddProject} />
