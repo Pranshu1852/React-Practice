@@ -27,6 +27,7 @@ function App() {
     setProjectsState((prevState)=>{
       return {
         ...prevState,
+        selectedProjectID: undefined,
         projects: [...prevState.projects, newProject] 
       }
     })
@@ -46,7 +47,7 @@ function App() {
 
   return (
     <main className="flex flex-row h-screen">
-      <Sidebar onStartAddProject={handleStartAddProject} />
+      <Sidebar onStartAddProject={handleStartAddProject} projects={projectsState.projects}/>
       {content}
     </main>
   );
