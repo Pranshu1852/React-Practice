@@ -1,4 +1,5 @@
 import useClipboard from "./hooks/useClipboard"
+import useDebounce from "./hooks/useDebounce";
 import useKeyPress from "./hooks/useKeyPress";
 import useLocalstorage from "./hooks/useLocalstorage";
 import useResetState from "./hooks/useResetState";
@@ -10,6 +11,11 @@ function App() {
   const {value: data,setValue: setData,removeValue: removeData}=useLocalstorage('testing','');
   const isPressed=useKeyPress('a');
   const {state,setState,reset}=useResetState('first state');
+  const debounceFunc=useDebounce(sayHello, 3000);
+
+  function sayHello() {
+    console.log('hello');
+  }
 
   return (
     <div>
@@ -26,6 +32,7 @@ function App() {
       <h1>{state}</h1>
       <button onClick={()=>setState('second state')}>set state to second</button>
       <button onClick={()=>reset()}>Reset state</button>
+      <button onClick={()=>debounceFunc()}>debounce</button>
     </div>
   )
 }
