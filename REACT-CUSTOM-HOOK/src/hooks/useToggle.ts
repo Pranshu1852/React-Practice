@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 function useToggle() {
-    const [value,setValue]=useState(false);
+    const [isOpen,setIsOpen]=useState(false);
 
     function toggle() {
-        setValue(!value);
+        setIsOpen(!isOpen);
     }
 
-    return { value, toggle, setValue};
+    return { isOpen, toggle, setIsOpen};
 };
 
 export default useToggle;
