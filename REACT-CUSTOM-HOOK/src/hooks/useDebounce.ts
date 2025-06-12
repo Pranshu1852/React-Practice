@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
-function useDebounce(func: (args: unknown[])=>unknown, delay: number) {
-    let timer: number;
-    const debounceFunc=function (newArgs: unknown[]){
-        clearTimeout(timer);
-        timer=setTimeout(()=>{
+function useDebounce(func: (...args: unknown[]) => unknown, delay: number) {
+    const timer=useRef<number| undefined>(undefined);
+    const debounceFunc=function (newArgs?: unknown[]){
+        clearTimeout(timer.current);
+        timer.current=setTimeout(()=>{
             func(newArgs);
         },delay)
     }
     
     useEffect(()=>{
         return () => {
-            clearTimeout(timer);
+            clearTimeout(timer.current);
         }
     },[])
 

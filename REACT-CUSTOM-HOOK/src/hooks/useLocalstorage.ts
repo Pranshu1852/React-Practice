@@ -1,14 +1,16 @@
+import { useState } from "react";
+
 function useLocalstorage<T>(key: string, initValue: T) {
     type valueType=typeof initValue;
-    let value:valueType | null=initValue;
+    const [value, setVal]=useState<valueType | null>(initValue);
 
     function setValue(newValue: valueType) {
-        value=newValue;
+        setVal(newValue);
         localStorage.setItem(key,JSON.stringify(newValue));
     }
     
     function removeValue() {
-        value=null;
+        setVal(null);
         localStorage.removeItem(key);
     }
 
