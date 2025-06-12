@@ -25,7 +25,7 @@ function useLongPress(callBack: (...args: unknown[])=>unknown) {
             },delay);
         }
 
-        function onClick() {
+        function onClick() { 
             createInterval(1000);
         }
 
