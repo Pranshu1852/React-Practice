@@ -2,12 +2,12 @@
 import express from "express";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import { StaticRouter } from "react-router-dom/server";
+import { StaticRouter } from "react-router-dom";
 import App from "../src/App";
 
 const app = express();
 
-app.get("/*", (req, res) => {
+app.get("/{*splat}", (req, res) => {
   const entryPoint = ["/main.js"];
 
   const { pipe, abort: _abort } = ReactDOMServer.renderToPipeableStream(
